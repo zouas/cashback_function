@@ -20,18 +20,8 @@ const calculateCashback = function (specialCategoryPurchases, otherCategoryPurch
 const cashback = calculateCashback(5000, 10000);
 console.log(cashback);
 
-function handleClick(evt) {
+function handleSubmit(evt) {
     evt.preventDefault(); //отменяем поведение по умолчанию
-
-    const specialAmountInputEl = document.getElementById('special-amount-input');
-    const specialAmountErrorEl = document.getElementById('special-amount-error');
-
-    const otherAmountInputEl = document.getElementById('other-amount-input');
-    const otherAmountErrorEl = document.getElementById('other-amount-error');
-
-    const specialCashbackEl = document.getElementById('special-cashback');
-    const otherCashbackEl = document.getElementById('other-cashback');
-    const totalCashbackEl = document.getElementById('total-cashback');
 
     specialAmountErrorEl.textContent = '';
     otherAmountErrorEl.textContent = '';
@@ -39,9 +29,7 @@ function handleClick(evt) {
     otherCashbackEl.textContent = '';
     totalCashbackEl.textContent = '';
 
-
     const specialAmount = Number(specialAmountInputEl.value);
-
 
     if (Number.isNaN(specialAmount)) {
         specialAmountErrorEl.textContent = `1-Неверное значение. Введите число, например: 10000`;
@@ -67,16 +55,20 @@ function handleClick(evt) {
     const result = calculateCashback(specialAmount, otherAmount);
 
     specialCashbackEl.textContent = `${result.specialCategoryCashback} руб.`
-
-
     otherCashbackEl.textContent = `${result.otherCategoryCashback} руб.`
-
-
     totalCashbackEl.textContent = `${result.totalCashback} руб.`
 
-    //debugger;
 }
 
 const formEl = document.getElementById('cashback-form');
-formEl.onclick = handleClick;
+formEl.onclick = handleSubmit;
 
+const specialAmountInputEl = document.getElementById('special-amount-input');
+const specialAmountErrorEl = document.getElementById('special-amount-error');
+
+const otherAmountInputEl = document.getElementById('other-amount-input');
+const otherAmountErrorEl = document.getElementById('other-amount-error');
+
+const specialCashbackEl = document.getElementById('special-cashback');
+const otherCashbackEl = document.getElementById('other-cashback');
+const totalCashbackEl = document.getElementById('total-cashback');
