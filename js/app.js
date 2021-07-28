@@ -21,37 +21,57 @@ const cashback = calculateCashback(5000, 10000);
 console.log(cashback);
 
 function handleClick(evt) {
-   // evt.preventDefault(); //отменяем поведение по умолчанию
+    evt.preventDefault(); //отменяем поведение по умолчанию
+
     const specialAmountInputEl = document.getElementById('special-amount-input');
-    const specialAmount = Number(specialAmountInputEl.value);
-    if (Number.isNaN(specialAmount)){
-        //TODO: show error
-        return;
-    }
-    if (!Number.isFinite(specialAmount)){
-        //TODO: show error
-        return;
-    }
+    const specialAmountErrorEl = document.getElementById('special-amount-error');
+
     const otherAmountInputEl = document.getElementById('other-amount-input');
-    const otherAmount = otherAmountInputEl.value;
+    const otherAmountErrorEl = document.getElementById('other-amount-error');
 
-    if (Number.isNaN(otherAmount)){
-        //TODO: show error
-        return;
-    }
-    if (!Number.isFinite(otherAmount)){
-        //TODO: show error
-        return;
-    }
-
-const result= calculateCashback(specialAmount,otherAmount);
     const specialCashbackEl = document.getElementById('special-cashback');
+    const otherCashbackEl = document.getElementById('other-cashback');
+    const totalCashbackEl = document.getElementById('total-cashback');
+
+    specialAmountErrorEl.textContent = '';
+    otherAmountErrorEl.textContent = '';
+    specialCashbackEl.textContent = '';
+    otherCashbackEl.textContent = '';
+    totalCashbackEl.textContent = '';
+
+
+    const specialAmount = Number(specialAmountInputEl.value);
+
+
+    if (Number.isNaN(specialAmount)) {
+        specialAmountErrorEl.textContent = `1-Неверное значение. Введите число, например: 10000`;
+        return;
+    }
+    if (!Number.isFinite(specialAmount)) {
+        specialAmountErrorEl.textContent = `1-Слишком большое значение. Введите число, например: 10000`;
+        return;
+    }
+
+    const otherAmount = Number(otherAmountInputEl.value);
+
+
+    if (Number.isNaN(otherAmount)) {
+        otherAmountErrorEl.textContent = `2-Неверное значение. Введите число, например: 10000`;
+        return;
+    }
+    if (!Number.isFinite(otherAmount)) {
+        otherAmountErrorEl.textContent = `2-Слишком большое значение. Введите число, например: 10000`;
+        return;
+    }
+
+    const result = calculateCashback(specialAmount, otherAmount);
+
     specialCashbackEl.textContent = `${result.specialCategoryCashback} руб.`
 
-    const otherCashbackEl = document.getElementById('other-cashback');
+
     otherCashbackEl.textContent = `${result.otherCategoryCashback} руб.`
 
-    const totalCashbackEl = document.getElementById('total-cashback');
+
     totalCashbackEl.textContent = `${result.totalCashback} руб.`
 
     //debugger;
