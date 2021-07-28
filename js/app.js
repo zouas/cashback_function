@@ -61,6 +61,8 @@ function handleSubmit(evt) {
 }
 
 const formEl = document.getElementById('cashback-form');
+formEl.addEventListener('submit', handleSubmit,true);
+
 formEl.onclick = handleSubmit;
 
 const specialAmountInputEl = document.getElementById('special-amount-input');
