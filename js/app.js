@@ -1,3 +1,4 @@
+'use strict';
 const calculateCashback = function (specialCategoryPurchases, otherCategoryPurchases) {
 
     const specialCategoryPercent = 0.03;
